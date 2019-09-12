@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="item in laters">{{item}}</li>
+    </ul>
+    <button @click="push">push</button>
+    <button @click="pop">pop</button>
+    <button @click="shift">shift</button>
+    <button @click="unshift">unshift</button>
+    <button @click="splice">splice</button>
+    <button @click="sort">sort</button>
+    <button @click="reverse">reverse</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            laters: ['a','b','c','d']
+        },
+        methods: {
+            push() {
+                this.laters.push('e','f');
+            },
+            pop() {
+                this.laters.pop();
+            },
+            shift() {
+                this.laters.shift();
+            },
+            unshift() {
+                this.laters.unshift('g','h');
+            },
+            splice() {
+                this.laters.splice(1,0,'i');
+            },
+            sort() {
+                this.laters.sort();
+            },
+            reverse() {
+                this.laters.reverse();
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

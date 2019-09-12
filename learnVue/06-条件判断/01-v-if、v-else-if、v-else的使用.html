@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2 v-if="scope >= 90">优秀</h2>
+    <h2 v-else-if="scope >= 80">良好</h2>
+    <h2 v-else-if="scope >= 60">及格</h2>
+    <h2 v-else>不及格</h2>
+
+    <h1>{{result}}</h1>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            scope: 99
+        },
+        computed: {
+            result() {
+                if (this.scope >= 90) {
+                    return "优秀";
+                }else if (this.scope >= 80){
+                    return "良好";
+                }else if (this.scope >= 60){
+                    return "及格";
+                } else {
+                    return "不及格";
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

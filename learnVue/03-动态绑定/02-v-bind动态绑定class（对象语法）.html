@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            color : red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1 :class="{active:isActive,line:isLine}">{{message}}</h1>
+    <button @click="variety">variety</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "Vue",
+            isActive: true,
+            isLine: false
+        },
+        methods: {
+            variety : function () {
+                this.isActive = !this.isActive;
+            }
+        }
+    })
+</script>
+</body>
+</html>

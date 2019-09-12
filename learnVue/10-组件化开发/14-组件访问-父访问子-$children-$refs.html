@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn ref="cpn1"></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn ref="cpn2"></cpn>
+    <button @click="click">按钮</button>
+</div>
+
+<template id="cpn">
+    <div>
+        <h1>{{message}}</h1>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const cpn = {
+        template: "#cpn",
+        data() {
+            return {
+                message: "Vue"
+            }
+        },
+        methods: {
+            sendMessage() {
+                console.log("sendMessage");
+            }
+        }
+    };
+    const app = new Vue({
+        el: "#app",
+        methods: {
+          click() {
+              //获取子组件数组
+              console.log(this.$children);
+              for(let child of this.$children){
+                  console.log(child.message);
+              }
+              //获取指定的子组件 通过ref属性标识
+              this.$refs.cpn1.sendMessage();
+              console.log(this.$refs.cpn2.message);
+          }
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+
+</body>
+</html>

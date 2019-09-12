@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--要求：根组件有两个值，传递给子组件，子组件显示并通过input修改这两个值，第一个值时第二个值的一百倍-->
+
+<div id="app">
+    <h1>num1的值：{{num1}}</h1>
+    <cpn :cvalue="num1" @numchange="num1Change"></cpn>
+    <h1>num2的值：{{num2}}</h1>
+    <cpn2 :cvalue="num2" @numchange="num2Change"></cpn2>
+</div>
+
+<template id="cpn">
+    <div>
+        <h1>子组件的值：{{cnum}}</h1>
+        <input type="text" v-model="cnum">
+    </div>
+</template>
+<template id="cpn2">
+    <div>
+        <h1>子组件的值：{{cnum}}</h1>
+        <input type="text" v-model="cnum">
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+    const cpn = {
+        template: '#cpn',
+        props: {
+            cvalue:Number
+        },
+        data() {
+            return {
+                cnum: this.cvalue
+            }
+        },
+        watch: {
+            cnum(newValue){
+                //1.修改cnum
+                this.cnum = newValue;
+                //2.通过$emit修改父组件的值
+                this.$emit('numchange',newValue);
+            }
+        }
+    };
+    const cpn2 = {
+        template: '#cpn2',
+        props: {
+            cvalue:Number
+        },
+        data() {
+            return {
+                cnum: this.cvalue
+            }
+        },
+        watch: {
+            cnum(newValue){
+                //1.修改cnum
+                this.cnum = newValue;
+                //2.通过$emit修改父组件的值
+                this.$emit('numchange',newValue);
+            }
+        }
+    };
+    const app = new Vue({
+        el: "#app",
+        data: {
+            num1:1,
+            num2:2
+        },
+        methods: {
+            num1Change(value){
+                this.num1=parseFloat(value);
+                this.num2=parseFloat(value)/100;
+                this.$children[1].cnum=parseFloat(value)/100;
+            },
+            num2Change(value){
+                this.num2=parseFloat(value);
+                this.num1=parseFloat(value)*100;
+                this.$children[0].cnum=parseFloat(value)*100;
+            }
+        },
+        components: {
+            cpn,
+            cpn2
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--.stop 阻止事件冒泡-->
+    <div @click="divClick">
+        <span>{{message}}</span>
+        <button @click.stop="butClick">按钮</button>
+        <!--.prevent 阻止默认事件 串联修饰符-->
+        <a :href="href" @click.prevent.stop="aClick">百度一下</a>
+        <a :href="href" @click.prevent.stop>百度一下</a>
+    </div>
+
+    <!--.prevent 阻止默认事件-->
+    <a :href="href" @click.prevent="aClick">百度一下</a>
+    <a :href="href" @click.prevent>百度一下</a>
+
+    <!--键修饰符 键别名-->
+    <input @keyup.enter="upEnter" type="text">
+    <!--键修饰符 键代码-->
+    <input @keyup.13="upEnter" type="text">
+
+    <!--.once 只触发一次-->
+    <button @click.once="butClickOnce">按钮</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "Vue",
+            href: "http://www.baidu.com"
+        },
+        methods: {
+            butClick() {
+                console.log("butClick");
+            },
+            divClick() {
+                console.log("divClick");
+            },
+            aClick() {
+                console.log("aClick");
+            },
+            upEnter() {
+                console.log("upEnter");
+            },
+            butClickOnce() {
+                console.log("butClickOnce");
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

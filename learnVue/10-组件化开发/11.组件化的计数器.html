@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h1>当前计数：{{total}}</h1>
+    <cpn @btnclick="click"></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <button @click="increment">+</button>
+        <button @click="decrement">-</button>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+    const num = 0;
+
+    const cpn = {
+        template: "#cpn",
+        data() {
+            return {
+                counter: num
+            }
+        },
+        methods: {
+            increment(){
+                this.$emit("btnclick",++this.counter)
+            },
+            decrement() {
+                this.$emit("btnclick",--this.counter)
+            }
+        }
+    };
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            total : num
+        },
+        methods:{
+            click(counter) {
+                this.total = counter
+            }
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+
+</body>
+</html>

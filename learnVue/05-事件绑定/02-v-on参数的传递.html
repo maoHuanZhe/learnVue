@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <button @click="butClick1">按钮1butClick1</button>
+    <button @click="butClick1()">按钮1butClick1()</button>
+
+    <button @click="butClick2">按钮2butClick2</button>
+    <button @click="butClick2()">按钮2butClick2()</button>
+    <button @click="butClick2(123)">按钮2butClick2(123)</button>
+
+    <button @click="butClick3">按钮3butClick3</button>
+    <button @click="butClick3()">按钮3butClick3()</button>
+    <button @click="butClick3(123)">按钮3butClick3(123)</button>
+    <button @click="butClick3(123,event)">按钮3butClick3(123,event)</button>
+    <button @click="butClick3(123,$event)">按钮3butClick3(123,$event)</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+
+        },
+        methods: {
+            butClick1(){
+                console.log("butClick1");
+            },
+            butClick2(name){
+                console.log("butClick2");
+                console.log(name);
+            },
+            butClick3(name,event){
+                console.log("butClick3");
+                console.log(name, event);
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{massage}}</h1>
+    <h1>Hello {{massage}}</h1>
+    <h1>{{firstName + lastName}}</h1>
+    <h1>{{firstName + " " + lastName}}</h1>
+    <h1>{{firstName}} {{lastName}}</h1>
+    <h1>{{count * 2}}</h1>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            massage: "Vue",
+            firstName: "Hello",
+            lastName: "World",
+            count: 100
+        }
+    })
+</script>
+</body>
+</html>

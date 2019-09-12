@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn :cmessage="message" :cmovies="movies"></cpn>
+    <cpn2 :cmessage="message" :cmovies="movies"></cpn2>
+</div>
+
+<template id="cpn">
+    <div>
+        <h1>{{cmessage}}</h1>
+        <ul>
+            <li v-for="movie in cmovies">{{movie}}</li>
+        </ul>
+    </div>
+</template>
+
+<template id="cpn2">
+    <div>
+        <h1>{{cmessage}}</h1>
+        <ul>
+            <li v-for="movie in cmovies">{{movie}}</li>
+        </ul>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+    const cpn = {
+        template: '#cpn',
+        //通过数组的方式传递
+        props:['cmessage','cmovies']
+    };
+
+    const cpn2 = {
+        template: "#cpn2",
+        //通过对象的方式传递
+        props: {
+            cmessage:{
+                //指定类型
+                type: String,
+                //设置默认值
+                default: "Hello",
+                //设置就必传
+                required: true
+            },
+            cmovies: {
+                type: Array,
+                //当数据类型为对象或者数组时，default的类型为函数，返回相应的默认数据
+                default() {
+                    return ["火影忍者"]
+                }
+            }
+        }
+    };
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "Vue",
+            movies: ["海贼王","一人之下"]
+        },
+        components: {
+            cpn,
+            cpn2
+        }
+    })
+</script>
+
+</body>
+</html>

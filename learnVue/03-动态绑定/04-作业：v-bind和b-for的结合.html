@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li @click="setActive(index)" :class="{active : classes[index]}" v-for="(movie,index) in movies">{{movie}}</li>
+    </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            movies: ['海贼王','一人之下','犬夜叉','火影忍者'],
+            classes:[true,false,false,false]
+        },
+        methods: {
+            getClass: function(index){
+                this.classes[index] = index === 0;
+                return {active:this.classes[index]}
+            },
+            setActive: function (liIndex) {
+                const _this = this;
+                this.classes.forEach(function (value, index) {
+                    Vue.set(_this.classes,index,(liIndex === index))
+                });
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

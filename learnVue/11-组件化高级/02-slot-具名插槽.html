@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn>
+        <button slot="left">按钮</button>
+        <h1 slot="center">标题</h1>
+        <a slot="right" href="http://www.baidu.com">百度一下</a>
+    </cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <slot name="left"><span>左边</span></slot>
+        <slot name="center"><span>中间</span></slot>
+        <slot name="right"><span>右边</span></slot>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const cpn = {
+        template: "#cpn"
+    };
+    const app = new Vue({
+        el: "#app",
+        data: {
+
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+
+</body>
+</html>

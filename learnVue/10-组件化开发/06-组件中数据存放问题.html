@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <h1>Vue</h1>
+        <span>{{message}}</span>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "root"
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {
+                        message: 'component'
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

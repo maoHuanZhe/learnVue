@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <h1>当前计数：{{count}}</h1>
+    <!--<button @click="function(){count++}">+</button>-->
+    <!--<button @click="function(){count&#45;&#45;}">-</button>-->
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el : "#app",
+        data : {
+            count : 0
+        },
+        methods : {
+            add : function () {
+                console.log("add被执行了");
+                this.count++;
+            },
+            sub : function () {
+                console.log("sub被执行了");
+                this.count--;
+            }
+        }
+    })
+</script>
+</body>
+</html>

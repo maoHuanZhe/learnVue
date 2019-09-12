@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn :cmovies="movies" @movieclick="cClick"></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <ul>
+            <li v-for="movie in cmovies">
+                <button @click="bntClick(movie)">{{movie}}</button>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const cpn = {
+        template: "#cpn",
+        props: {
+            cmovies:Array
+        },
+        methods: {
+            bntClick(movie) {
+                this.$emit("movieclick",movie);
+            }
+        }
+    };
+    const app = new Vue({
+        el: "#app",
+        data: {
+            movies: ["海贼王","一人之下"]
+        },
+        methods: {
+            cClick(movie){
+                console.log(movie);
+            }
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+
+</body>
+</html>
